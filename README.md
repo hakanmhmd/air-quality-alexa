@@ -1,4 +1,4 @@
-# Alexa-transport-knowledge
+# Alexa-air-quality-skill
 
 If you want to replicate the project:
 
