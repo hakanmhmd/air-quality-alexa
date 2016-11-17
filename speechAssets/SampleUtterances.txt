@@ -1,0 +1,25 @@
+GetAirQuality get me the air quality in {location}
+GetAirQuality get me the air quality around {location}
+GetAirQuality show me the air measures in {location}
+GetAirQuality {location}
+GetAirQuality how is the air in {location}
+GetAirQuality how is the situation like in {location}
+GetAirQuality what is the air like at {location}
+GetAirQuality get me pollution information in {location}
+GetAirQuality give me the pollution data in {location}
+GetAirQuality is the air quality bad in {location}
+GetAirQuality is the air quality good in {location}
+GetAirQuality should i go to {location}
+GetAirQuality is it worth being in {location}
+GetAirQuality what contaminants are there in {location}
+GetAirQualityAround get me the air details around me
+GetAirQualityAround tell me what is the air quality near me
+GetAirQualityAround show me the air measures around my area
+GetAirQualityAround how is the air around
+GetAirQualityAround should i go out
+GetAirQualityAround how is it outside
+GetAirQualityAround is the air quality bad
+GetAirQualityAround is the air quality good
+GetAirQualityAround can i go running
+GetAirQualityAround will i get fresh air out today
+GetAirQualityAround what contaminants are there outside today

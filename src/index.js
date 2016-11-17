@@ -34,7 +34,7 @@ AirQualitySkill.prototype.eventHandlers.onLaunch = function (launchRequest, sess
     handleWelcomeRequest(response);
 };
 
-TTidepoolerransportKnowledge.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, session) {
+AirQualitySkill.prototype.eventHandlers.onSessionEnded = function (sessionEndedRequest, session) {
     console.log("onSessionEnded requestId: " + sessionEndedRequest.requestId
         + ", sessionId: " + session.sessionId);
     // any cleanup logic goes here
@@ -59,18 +59,16 @@ AirQualitySkill.prototype.intentHandlers = {
     }
 };
 
+function handleHelpRequest(response) {
+    var repromptText = "Which city would you like air quality information for?";
+    var speechOutput = "I can give you useful information about the "
+        + "air quality of a particular city, town, address "
+        + "or you can simply open Air Quality skill and ask for the air quality around, "
+        + "I will find your location myself."
+        + repromptText;
 
-
-
-
-
-
-
-
-
-
-
-
+    response.ask(speechOutput, repromptText);
+}
 
 // Create the handler that responds to the Alexa Request.
 exports.handler = function (event, context) {

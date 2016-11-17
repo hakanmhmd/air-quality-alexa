@@ -1,0 +1,26 @@
+{
+    "intents": [
+        {
+            "intent": "GetAirQuality",
+            "slots": [
+                {
+                    "name": "location",
+                    "type": "AMAZON.GB_CITY"
+                }
+            ]
+        },
+        {
+            "intent": "GetAirQualityAround",
+            "slots": []
+        },
+        {
+          "intent": "AMAZON.HelpIntent"
+        },
+        {
+          "intent": "AMAZON.StopIntent"
+        },
+        {
+          "intent": "AMAZON.CancelIntent"
+        }
+    ]
+}
