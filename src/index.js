@@ -73,10 +73,6 @@ AirQualitySkill.prototype.intentHandlers = {
         handleRequest(location, response)
     },
 
-    "GetAirQualityAround": function (intent, session, response) {
-
-    },
-
     "AMAZON.HelpIntent": function (intent, session, response) {
         handleHelpRequest(response);
     },
@@ -104,11 +100,8 @@ function handleWelcomeRequest(response) {
             type: AlexaSkill.speechOutputType.SSML
         },
         repromptOutput = {
-            speech: "I can lead you through providing a city and "
-                + "day of the week to get tide information, "
-                + "or you can simply open Tide Pooler and ask a question like, "
-                + "get tide information for Seattle on Saturday. "
-                + "For a list of supported cities, ask what cities are supported. "
+            speech: "I can give you useful information about the "
+                + "air quality of a particular city, town, address."
                 + repromptText,
             type: AlexaSkill.speechOutputType.PLAIN_TEXT
         };
@@ -120,9 +113,7 @@ function handleWelcomeRequest(response) {
 function handleHelpRequest(response) {
     var repromptText = "Which city/town/area would you like air quality information for?";
     var speechOutput = "I can give you useful information about the "
-        + "air quality of a particular city, town, address "
-        + "or you can simply open Air Quality skill and ask for the air quality around, "
-        + "I will find your location myself."
+        + "air quality of a particular city, town, address."
         + repromptText;
 
     response.ask(speechOutput, repromptText);
@@ -191,13 +182,14 @@ function getAirQuality(location, callback){
                             var text = ''
                             var airq_desc = obj.breezometer_description
                             var pollution_desc = obj.country_description
-                            text += airq_desc + ' and ' + pollution_desc + ' in ' + config.resolvedLocation + '.My recommendations are: '
+                            text += airq_desc + ' and ' + pollution_desc + ' in ' + config.resolvedLocation 
+                            text += '. My recommendations are: '
                             for(var prop in obj.random_recommendations){
-                                text += obj.random_recommendations[prop]
+                                text += obj.random_recommendations[prop] + '. '
                             }
                             text += 'The dominant pollutant is ' + obj.dominant_pollutant_description
-                            text += 'The effects are: ' + obj.dominant_pollutant_text.effects
-                            text += 'The causes are: ' + obj.dominant_pollutant_text.causes
+                            text += '. The effects are: ' + obj.dominant_pollutant_text.effects
+                            text += '. The causes are: ' + obj.dominant_pollutant_text.causes
                             callback(null, text)
                         }
                     }).on('error', function (e) {
