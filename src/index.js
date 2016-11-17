@@ -1,9 +1,9 @@
 /**
  * App ID for the skill
  */
-var APP_ID = undefined;//replace with 'amzn1.echo-sdk-ams.app.[your-unique-value-here]';
+var APP_ID = "amzn1.ask.skill.b3b64419-1bea-4de4-afbb-0f28b5871bf5"
 
-var https = require('https')
+
 // endpoints urls
 const AQ_BASE_URL = 'https://api.breezometer.com/baqi/'
 const MAPS_BASE_URL = 'https://maps.googleapis.com/maps/api/geocode/'
@@ -15,18 +15,17 @@ var config = {
     data_format: 'json'
 }
 
-
-
 /**
  * The AlexaSkill prototype and helper functions
  */
-var AlexaSkill = require('./AlexaSkill');
+var AlexaSkill = require('./AlexaSkill')
+var https = require('https')
 
 /**
  * AirQualitySkill is a subclass of AlexaSkill.
  */
 var AirQualitySkill = function () {
-    AlexaSkill.call(this, APP_ID);
+    AlexaSkill.call(this, APP_ID)
 };
 
 // Extend AlexaSkill
@@ -71,7 +70,7 @@ AirQualitySkill.prototype.intentHandlers = {
         // location is found
         var location = locationSlot.value
 
-        handleAirQualityRequest(location, response)
+        handleRequest(location, response)
     },
 
     "GetAirQualityAround": function (intent, session, response) {
@@ -146,11 +145,12 @@ function getAirQuality(location, callback){
     config.givenLocation = location
     var google_url = MAPS_BASE_URL + getMapsParameters()
 
-    https.get(url, function (res) {
+    https.get(google_url, function (res) {
+        console.log(google_url)
         var response = '';
 
         if (res.statusCode != 200) {
-            callback(new Error("Non 200 Response"))
+            callback(new Error())
         }
 
         res.on('data', function (data) {
@@ -173,10 +173,11 @@ function getAirQuality(location, callback){
 
                 var airq_url = AQ_BASE_URL + getAQIParameters()
                 https.get(airq_url, function(res){
+                    console.log(airq_url)
                     var response = ''
 
                     if (res.statusCode != 200) {
-                        callback(new Error("Non 200 Response"))
+                        callback(new Error())
                     }
 
                     res.on('data', function (data) {
@@ -190,13 +191,13 @@ function getAirQuality(location, callback){
                             var text = ''
                             var airq_desc = obj.breezometer_description
                             var pollution_desc = obj.country_description
-                            text += airq_desc + ' and ' + pollution_desc + ' in ' + config.resolvedLocation + '.\nMy recommendations: \n'
+                            text += airq_desc + ' and ' + pollution_desc + ' in ' + config.resolvedLocation + '.My recommendations are: '
                             for(var prop in obj.random_recommendations){
-                                text += obj.random_recommendations[prop] + '\n'
+                                text += obj.random_recommendations[prop]
                             }
                             text += 'The dominant pollutant is ' + obj.dominant_pollutant_description
-                            text += '\nThe effects: ' + obj.dominant_pollutant_text.effects
-                            text += '\nThe causes: ' + obj.dominant_pollutant_text.causes
+                            text += 'The effects are: ' + obj.dominant_pollutant_text.effects
+                            text += 'The causes are: ' + obj.dominant_pollutant_text.causes
                             callback(null, text)
                         }
                     }).on('error', function (e) {
@@ -216,7 +217,7 @@ function getAirQuality(location, callback){
 
 // connect google maps api parameters
 function getMapsParameters(){
-    var params = config.format
+    var params = config.data_format
     params += '?address=' + encodeURIComponent(config.givenLocation)
     params += '&key=' + config.google_key
     return params
@@ -233,6 +234,6 @@ function getAQIParameters() {
 
 // Create the handler that responds to the Alexa Request.
 exports.handler = function (event, context) {
-    var AirQualitySkill = new AirQualitySkill();
-    AirQualitySkill.execute(event, context);
+    var skill = new AirQualitySkill();
+    skill.execute(event, context);
 };
