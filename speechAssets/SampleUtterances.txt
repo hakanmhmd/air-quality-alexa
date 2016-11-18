@@ -12,14 +12,12 @@ GetAirQuality is the air quality good in {location}
 GetAirQuality should i go to {location}
 GetAirQuality is it worth being in {location}
 GetAirQuality what contaminants are there in {location}
-GetAirQualityAround get me the air details around me
-GetAirQualityAround tell me what is the air quality near me
-GetAirQualityAround show me the air measures around my area
-GetAirQualityAround how is the air around
-GetAirQualityAround should i go out
-GetAirQualityAround how is it outside
-GetAirQualityAround is the air quality bad
-GetAirQualityAround is the air quality good
-GetAirQualityAround can i go running
-GetAirQualityAround will i get fresh air out today
-GetAirQualityAround what contaminants are there outside today
+GetAirQuality get me the air details around {location}
+GetAirQuality tell me what is the air quality near {location}
+GetAirQuality show me the air measures around {location}
+GetAirQuality how is the air around {location}
+GetAirQuality should i go out in {location}
+GetAirQuality how is it outside in {location}
+GetAirQuality can i go running in {location}
+GetAirQuality will i get fresh air out today in {location}
+GetAirQuality what contaminants are there outside today in {location}

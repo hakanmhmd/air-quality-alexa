@@ -10,10 +10,6 @@
             ]
         },
         {
-            "intent": "GetAirQualityAround",
-            "slots": []
-        },
-        {
           "intent": "AMAZON.HelpIntent"
         },
         {
