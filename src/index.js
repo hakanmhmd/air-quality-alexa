@@ -92,7 +92,7 @@ AirQualitySkill.prototype.intentHandlers = {
 
 // welcomes user when the skill is started
 function handleWelcomeRequest(response) {
-    var repromptText = "Which city/town/area would you like air quality information for?",
+    var repromptText = "Which location would you like air quality information for?",
     speechOutput = {
             speech: "<speak>Welcome to Air Quality. "
                 + repromptText
@@ -111,9 +111,9 @@ function handleWelcomeRequest(response) {
 
 // handles request when user requests help
 function handleHelpRequest(response) {
-    var repromptText = "Which city/town/area would you like air quality information for?";
+    var repromptText = "Which location would you like air quality information for?";
     var speechOutput = "I can give you useful information about the "
-        + "air quality of a particular city, town, address."
+        + "air quality of a particular city, town, address. "
         + repromptText;
 
     response.ask(speechOutput, repromptText);
@@ -182,8 +182,7 @@ function getAirQuality(location, callback){
                             var text = ''
                             var airq_desc = obj.breezometer_description
                             var pollution_desc = obj.country_description
-                            text += airq_desc + ' and ' + pollution_desc + ' in ' + config.resolvedLocation 
-                            text += '. My recommendations are: '
+                            text += airq_desc + ' and ' + pollution_desc + ' in ' + config.resolvedLocation + '. '
                             for(var prop in obj.random_recommendations){
                                 text += obj.random_recommendations[prop] + '. '
                             }
